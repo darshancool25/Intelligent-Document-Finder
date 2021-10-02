@@ -1,0 +1,6 @@
+Following python imports are required for the Handsfree_Note_Taking peoject :
+speech_recognition
+nltk
+re
+summa
+pandas
