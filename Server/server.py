@@ -3,8 +3,18 @@ import math
 import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify
+import pickle
+from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier
 
 app = Flask(__name__)
+
+def find_recommendations(param1, recommendations):
+    pickled_model = pickle.load(open('model.pkl', 'rb'))
+    #TODO - Standard scalar and OHE
+    result = pickled_model.predict(param1)
+    recommendations = clean_result(result)
 
 @app.route("/")
 def Home():
