@@ -10,6 +10,22 @@ from xgboost import XGBClassifier
 
 app = Flask(__name__)
 
+def get_max_two_recommendations(recommendations):
+    res = []
+    max1,max2=-1,-1
+    for recommendation in recommendations:
+        num = recommendation[2]
+        if (max1 < num):
+            max2 = max1
+            max1 =num
+        elif(max2 < num):
+            max2 = num
+    for recommendation in recommendations : 
+        if recommendation[2] == max1 or recommendation[2] = max2:
+            res.append(recommendation)
+    return res
+        
+
 def find_recommendations(param1, recommendations):
     pickled_model = pickle.load(open('model.pkl', 'rb'))
     #TODO - Standard scalar and OHE
